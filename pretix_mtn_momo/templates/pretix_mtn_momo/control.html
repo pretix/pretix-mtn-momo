@@ -1,0 +1,29 @@
+{% load i18n %}
+
+{% if payment_info %}
+    <dl class="dl-horizontal">
+        {% if payment_info.reference %}
+            <dt>{% trans "Internal Reference" %}</dt>
+            <dd>{{ payment_info.reference }}</dd>
+        {% endif %}
+        {% if payment_info.payer %}
+            <dt>{% trans "Payer" %}</dt>
+            <dd>{{ payment_info.payer.partyId }}</dd>
+        {% endif %}
+        {% if payment_info.financialTransactionId %}
+            <dt>{% trans "Transaction ID" %}</dt>
+            <dd>{{ payment_info.financialTransactionId }}</dd>
+        {% endif %}
+        {% if payment_info.status %}
+            <dt>{% trans "Status" %}</dt>
+            <dd>{{ payment_info.status }}</dd>
+        {% endif %}
+        {% if payment_info.reason.message %}
+            <dt>{% trans "Reason" %}</dt>
+            <dd>{{ payment_info.reason.message }}</dd>
+        {% elif payment_info.reason %}
+            <dt>{% trans "Reason" %}</dt>
+            <dd>{{ payment_info.reason }}</dd>
+        {% endif %}
+    </dl>
+{% endif %}

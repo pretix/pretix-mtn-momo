@@ -1,0 +1,27 @@
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% if payment.state == "failed" %}
+    <p>
+        {% blocktrans trimmed with reason=payment_info.reason.message|default:payment_info.reason %}
+            Your payment failed for the following reason: {{ reason }}
+        {% endblocktrans %}
+    </p>
+{% elif payment.state == "pending" %}
+    <h4 class="text-center">
+        <span class="fa fa-clock-o text-muted fa-2x" aria-hidden="true"></span><br>
+        {% trans "Payment approval required" %}
+    </h4>
+    <p class="text-center">
+        {% blocktrans trimmed %}
+            Please approve the payment on your mobile device. Then, reload this page. It may take a
+            few minutes until your order shows up as paid. You will also receive an email once we
+            received the payment.
+        {% endblocktrans %}
+    </p>
+    <p class="text-center">
+        <a href="" class="btn btn-primary">
+            <span class="fa fa-refresh" aria-hidden="true"></span> {% trans "Reload" %}
+        </a>
+    </p>
+{% endif %}
