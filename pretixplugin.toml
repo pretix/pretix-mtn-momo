@@ -1,0 +1,5 @@
+[plugin]
+package = "pretix-mtn-momo"
+modules = [ "pretix_mtn_momo" ]
+marketplace_name = "mtn-momo"
+

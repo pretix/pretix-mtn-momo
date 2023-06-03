@@ -1,0 +1,5 @@
+recursive-include pretix_mtn_momo/static *
+recursive-include pretix_mtn_momo/templates *
+recursive-include pretix_mtn_momo/locale *
+include LICENSE
+exclude .gitlab-ci.yml
