@@ -107,13 +107,7 @@ class MTNMoMo(BasePaymentProvider):
             (
                 "subscription_key",
                 SecretKeySettingsField(
-                    label=_("Subscription key"),
-                ),
-            ),
-            (
-                "subscription_key",
-                SecretKeySettingsField(
-                    label=_("Disbursement API Subscription key"),
+                    label=_("Collection subscription key"),
                 ),
             ),
             (
