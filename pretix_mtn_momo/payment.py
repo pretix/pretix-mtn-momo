@@ -149,11 +149,13 @@ class MTNMoMo(BasePaymentProvider):
         if self.settings.environment == "sandbox":
             if self.settings.test_merchant_account and self.settings.test_api_key:
                 return mark_safe(
-                    _('The Mobile Money plugin is operating in test mode. You can use any phone number to test, or one '
-                      'of <a {args}>a few test numbers</a> to create a failed transaction. No money will actually be '
-                      'transferred.').format(
+                    _(
+                        "The Mobile Money plugin is operating in test mode. You can use any phone number to test, or one "
+                        "of <a {args}>a few test numbers</a> to create a failed transaction. No money will actually be "
+                        "transferred."
+                    ).format(
                         args='href="https://momodeveloper.mtn.com/api-documentation/testing/" '
-                             'target="_blank"'
+                        'target="_blank"'
                     )
                 )
             return _("Mobile Money is operating in test mode.")
