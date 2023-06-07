@@ -11,6 +11,7 @@ from django.core.cache import cache
 from django.http import HttpRequest
 from django.template.loader import get_template
 from django.urls import reverse
+from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from phonenumber_field.formfields import PhoneNumberField
 from pretix.base.forms import SecretKeySettingsField
@@ -146,6 +147,15 @@ class MTNMoMo(BasePaymentProvider):
 
     def test_mode_message(self) -> str:
         if self.settings.environment == "sandbox":
+            if self.settings.test_merchant_account and self.settings.test_api_key:
+                return mark_safe(
+                    _('The Mobile Money plugin is operating in test mode. You can use any phone number to test, or one '
+                      'of <a {args}>a few test numbers</a> to create a failed transaction. No money will actually be '
+                      'transferred.').format(
+                        args='href="https://momodeveloper.mtn.com/api-documentation/testing/" '
+                             'target="_blank"'
+                    )
+                )
             return _("Mobile Money is operating in test mode.")
 
     def payment_control_render(self, request, payment) -> str:
