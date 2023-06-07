@@ -3,9 +3,19 @@
 
 {% if payment.state == "failed" %}
     <p>
-        {% blocktrans trimmed with reason=payment_info.reason.message|default:payment_info.reason %}
-            Your payment failed for the following reason: {{ reason }}
-        {% endblocktrans %}
+        {% if "reason" in payment_info and "message" in payment_info.reason %}
+            {% blocktrans trimmed with reason=payment_info.reason.message %}
+                Your payment failed for the following reason: {{ reason }}
+            {% endblocktrans %}
+        {% elif "reason" in payment_info %}
+            {% blocktrans trimmed with reason=payment_info.reason %}
+                Your payment failed for the following reason: {{ reason }}
+            {% endblocktrans %}
+        {% else %}
+            {% blocktrans trimmed with reason=payment_info.reason %}
+                Your payment failed.
+            {% endblocktrans %}
+        {% endif %}
     </p>
 {% elif payment.state == "pending" %}
     <h4 class="text-center">
