@@ -1,4 +1,5 @@
 from django.utils.translation import gettext_lazy
+
 from . import __version__
 
 try:
@@ -15,13 +16,14 @@ class PluginApp(PluginConfig):
     class PretixPluginMeta:
         name = gettext_lazy("MTN Mobile Money")
         author = "pretix team"
-        description = gettext_lazy("Accept payments through MTN Mobile Money (MoMo), a popular payment method in a number of African countries.")
+        description = gettext_lazy(
+            "Accept payments through MTN Mobile Money (MoMo), a popular payment method in a number of African countries."
+        )
         visible = True
         version = __version__
         category = "PAYMENT"
         compatibility = "pretix>=4.20.0"
+        picture = "pretix_mtn_momo/logo.png"
 
     def ready(self):
         from . import signals  # NOQA
-
-
