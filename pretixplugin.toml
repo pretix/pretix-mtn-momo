@@ -2,4 +2,8 @@
 package = "pretix-mtn-momo"
 modules = [ "pretix_mtn_momo" ]
 marketplace_name = "mtn-momo"
+pypi = true
+repository_servers = { origin = "github.com", gitlab = "code.rami.io" }
+tag_targets = [ "origin", "gitlab" ]
+branch_targets = [ "origin/master", "gitlab/master", "f:gitlab/pypi" ]
 
